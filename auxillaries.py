@@ -7,7 +7,7 @@ def initiate():
   # Create a connection object.
   conn = st.connection('gsheets', type=GSheetsConnection)
   
-  df = conn.read()
+  df = conn.read(ttl = 0)
   return df
 
 # from google.oauth2 import service_account
