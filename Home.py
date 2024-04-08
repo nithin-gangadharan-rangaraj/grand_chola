@@ -26,7 +26,7 @@ def display_menu(df):
 
 def display_logo():
   st.title('GRAND CHOLA INDIAN RESTAURRANT')
-  st.write('Discover :orange[authentic Indian cuisine], reimagined.')
+  st.write('**Discover :orange[authentic Indian cuisine], reimagined.**')
   # st.image('chola.png', width = 200)
 
 if __name__ == "__main__":
