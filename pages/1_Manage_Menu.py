@@ -9,4 +9,5 @@ def display_current_menu(df):
       
 if __name__ == "__main__":
   df = initiate()
+  st.dataframe(df)
   display_current_menu(df)
