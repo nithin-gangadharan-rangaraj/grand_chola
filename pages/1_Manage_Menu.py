@@ -2,7 +2,7 @@ import streamlit as st
 from auxillaries import *
 
 def update_menu(groups_df, update_container):
-  update_container.warning("Looks like you've updated your menu. Finalise by clicking the button!")
+  update_container.warning("Looks like you've made some changes. Finalise by clicking the button! Leave it be otherwise.")
   update_container.button('Click here to update')
 
 def display_current_menu(df, update_container):
