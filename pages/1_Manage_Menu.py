@@ -7,12 +7,13 @@ def update_menu(groups_df, conn):
   #   st.warning("Looks like you've made some changes. Finalise by clicking the button! Leave it be otherwise.")
   if st.button('Click here to update'):
     combined_df = pd.concat(groups_df.values(), axis=1)
-    conn.update(
-        worksheet="Sheet1",
-        data=combined_df,
-    )
-    st.cache_data.clear()
-    st.rerun()
+    st.dataframe(combined_df)
+    # conn.update(
+    #     worksheet="Sheet1",
+    #     data=combined_df,
+    # )
+    # st.cache_data.clear()
+    # st.rerun()
 
 def display_current_menu(df):
   groups_df = dict()
