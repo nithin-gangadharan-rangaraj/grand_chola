@@ -1,0 +1,7 @@
+streamlit
+gunicorn
+pandas
+openai
+requests
+gspread
+google-auth
