@@ -4,9 +4,10 @@ from streamlit_gsheets import GSheetsConnection
 
 def initiate():
   # Create a connection object.
-  conn = st.connection(st.secrets['sheet_name'], type=GSheetsConnection)
+  conn = st.connection('gsheets', type=GSheetsConnection)
   
-  df = conn.read(worksheet="Sheet1",
+  df = conn.read(Spreadsheet = st.secrets['sheet_name'],
+                 worksheet="Sheet1",
                  ttl="0")
   return df
 
