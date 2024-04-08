@@ -25,7 +25,7 @@ def display_menu(df):
     st.divider()
 
 def display_logo():
-  st.image('chola.png')
+  st.image('chola.png', width = 200)
 
 if __name__ == "__main__":
   df = initiate()
