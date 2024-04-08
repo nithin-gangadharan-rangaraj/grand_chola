@@ -33,4 +33,3 @@ if __name__ == "__main__":
   # update_container = st.container()
   groups_df = display_current_menu(df)
   update_menu(groups_df, conn)
-  st.dataframe(df)
