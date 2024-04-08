@@ -25,8 +25,8 @@ def display_menu(df):
     st.divider()
 
 def display_logo():
-  st.title('GRAND CHOLA INDIAN RESTAURRANT', divider = 'red')
-  st.write('Discover authentic Indian cuisine, reimagined.')
+  st.title('GRAND CHOLA INDIAN RESTAURRANT')
+  st.write('Discover :orange[authentic Indian cuisine], reimagined.')
   # st.image('chola.png', width = 200)
 
 if __name__ == "__main__":
