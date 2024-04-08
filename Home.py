@@ -14,6 +14,7 @@ style = '''
                 }
     </style>
 '''
+st.markdown(style, unsafe_allow_html=True)
 
 def display_menu(df):
   for category, group_df in df.groupby('Category'):
