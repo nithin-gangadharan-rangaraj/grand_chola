@@ -8,8 +8,8 @@ style = '''
         .block-container {
                     padding-top: 2rem;
                     padding-bottom: 0rem;
-                    padding-left: 1rem;
-                    padding-right: 1rem;
+                    padding-left: 0rem;
+                    padding-right: 0rem;
                 }
     </style>
 '''
