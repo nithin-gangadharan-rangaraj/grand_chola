@@ -7,8 +7,8 @@ def initiate():
   # Create a connection object.
   conn = st.connection('gsheets', type=GSheetsConnection)
   
-  df = conn.read(ttl = 0)
-  return df
+  
+  return conn
 
 # from google.oauth2 import service_account
 # import streamlit as st
