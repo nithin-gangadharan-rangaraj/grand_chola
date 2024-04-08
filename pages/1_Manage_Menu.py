@@ -7,7 +7,12 @@ def update_menu(groups_df, update_container):
     st.warning("Looks like you've made some changes. Finalise by clicking the button! Leave it be otherwise.")
     if st.button('Click here to update'):
       combined_df = pd.concat(groups_df.values(), axis=1)
-      st.dataframe(combined_df)
+      conn.update(
+          worksheet="Sheet1",
+          data=combined_df,
+      )
+      st.cache_data.clear()
+      st.experimental_rerun()
     st.divider()
 
 def display_current_menu(df, update_container):
@@ -18,7 +23,7 @@ def display_current_menu(df, update_container):
   return groups_df
       
 if __name__ == "__main__":
-  df = initiate()
+  conn = initiate()
   st.subheader('Grand Chola - Menu')
   update_container = st.container()
   groups_df = display_current_menu(df, update_container)
