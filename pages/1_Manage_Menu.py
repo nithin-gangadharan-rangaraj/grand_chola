@@ -23,7 +23,17 @@ def display_current_menu(df):
   groups_df = dict()
   for category, group_df in df.groupby('Category'):
     with st.expander(category):
-      groups_df[category] = st.data_editor(group_df)
+      groups_df[category] = st.data_editor(group_df,
+                                           column_config={
+                                                            "Price (AUD)": st.column_config.NumberColumn(
+                                                                format="$ %f",
+                                                            ),
+                                                            "Spice Level": st.column_config.NumberColumn(
+                                                                format="%d",
+                                                            ),
+                                                          },
+                                           num_rows = 'dynamic',
+                                          )
   return groups_df
 
 def get_conn_df(conn):
