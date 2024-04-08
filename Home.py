@@ -1,6 +1,19 @@
 import streamlit as st
 from auxillaries import *
 
+style = '''
+    <style>
+        header {visibility: hidden;}
+        MainMenu {visibility: hidden;}
+        .block-container {
+                    padding-top: 2rem;
+                    padding-bottom: 0rem;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
+    </style>
+'''
+
 def display_menu(df):
   for category, group_df in df.groupby('Category'):
     st.subheader(f"{category.upper()}:", divider = 'orange')
