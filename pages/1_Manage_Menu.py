@@ -22,5 +22,5 @@ if __name__ == "__main__":
   st.subheader('Grand Chola - Menu')
   update_container = st.container()
   groups_df = display_current_menu(df, update_container)
-  combined_df = pd.concat(groups_df.values(), axis=1)
+  combined_df = pd.concat(groups_df.values())
   st.dataframe(combined_df)
