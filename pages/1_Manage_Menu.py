@@ -1,9 +1,14 @@
 import streamlit as st
 from auxillaries import *
+import pandas as pd
 
 def update_menu(groups_df, update_container):
-  update_container.warning("Looks like you've made some changes. Finalise by clicking the button! Leave it be otherwise.")
-  update_container.button('Click here to update')
+  with update_container:
+    st.warning("Looks like you've made some changes. Finalise by clicking the button! Leave it be otherwise.")
+    if st.button('Click here to update'):
+      combined_df = pd.concat(groups_df.values(), axis=1)
+      st.dataframe(combined_df)
+    st.divider()
 
 def display_current_menu(df, update_container):
   groups_df = dict()
