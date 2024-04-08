@@ -6,15 +6,19 @@ def update_menu(groups_df, conn):
   # with update_container:
   #   st.warning("Looks like you've made some changes. Finalise by clicking the button! Leave it be otherwise.")
   if st.button('Click here to update'):
-    combined_df = pd.concat(groups_df.values())
-    # st.dataframe(combined_df)
-    conn.update(
-        worksheet="Sheet1",
-        data=combined_df,
-    )
-    # st.cache_data.clear()
-    # st.rerun()
-    st.success('Successfully updated')
+    try:
+      combined_df = pd.concat(groups_df.values())
+      # st.dataframe(combined_df)
+      conn.update(
+          worksheet="Sheet1",
+          data=combined_df,
+      )
+      # st.cache_data.clear()
+      st.success('Successfully updated')
+      st.rerun()
+    except:
+      st.error('Failed to update.')
+
 
 def display_current_menu(df):
   groups_df = dict()
@@ -31,6 +35,5 @@ if __name__ == "__main__":
   conn = initiate()
   df = get_conn_df(conn)
   st.subheader('Grand Chola - Menu')
-  # update_container = st.container()
   groups_df = display_current_menu(df)
   update_menu(groups_df, conn)
