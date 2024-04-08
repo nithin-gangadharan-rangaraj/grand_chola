@@ -6,7 +6,7 @@ def update_menu(groups_df, conn):
   # with update_container:
   #   st.warning("Looks like you've made some changes. Finalise by clicking the button! Leave it be otherwise.")
   if st.button('Click here to update'):
-    combined_df = pd.concat(groups_df.values(), axis=1)
+    combined_df = pd.concat(groups_df.values())
     st.dataframe(combined_df)
     # conn.update(
     #     worksheet="Sheet1",
