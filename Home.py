@@ -26,4 +26,5 @@ def display_menu(df):
 
 if __name__ == "__main__":
   df = initiate()
+  st.image('Chola logo.png')
   display_menu(df)
