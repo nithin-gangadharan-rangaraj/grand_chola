@@ -38,6 +38,7 @@ def display_current_menu(df):
 
 def get_conn_df(conn):
   df = conn.read(ttl = 0)
+  df = df[['Category',	'Item',	'Price (AUD)',	'Spice Level',	'Description']]
   return df
       
 if __name__ == "__main__":
