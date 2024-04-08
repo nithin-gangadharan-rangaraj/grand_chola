@@ -6,7 +6,7 @@ def update_menu(groups_df, conn):
   # with update_container:
   #   st.warning("Looks like you've made some changes. Finalise by clicking the button! Leave it be otherwise.")
   if st.button('Click here to update'):
-    # try:
+    try:
       combined_df = pd.concat(groups_df.values())
       # st.dataframe(combined_df)
       conn.update(
@@ -15,9 +15,8 @@ def update_menu(groups_df, conn):
       )
       # st.cache_data.clear()
       st.success('Successfully updated')
-      st.rerun()
-    # except:
-    #   st.error('Failed to update.')
+    except:
+      st.error('Failed to update.')
 
 
 def display_current_menu(df):
