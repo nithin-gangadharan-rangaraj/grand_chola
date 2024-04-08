@@ -1,6 +1,9 @@
 import streamlit as st
 from auxillaries import *
 
+st.set_page_config(page_title="Grand Chola - Menu",layout='wide')
+
+
 style = '''
     <style>
         header {visibility: hidden;}
