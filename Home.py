@@ -18,15 +18,16 @@ st.markdown(style, unsafe_allow_html=True)
 
 def display_menu(df):
   for category, group_df in df.groupby('Category'):
-    st.header(f"{category.upper()}:", divider = 'orange')
+    st.subheader(f"{category.upper()}:", divider = 'orange')
     for idx, row in group_df.iterrows():
       st.write(f"**{row['Item'].capitalize()} - {row['Price (AUD)']}**")
       st.write(f"{row['Description']}")
     st.divider()
 
 def display_logo():
-  st.title('GRAND CHOLA INDIAN RESTAURRANT')
-  st.subheader('**Discover :orange[authentic Indian cuisine], reimagined.**')
+  st.title('GRAND CHOLA')
+  st.title('INDIAN RESTAURRANT')
+  st.write('**Discover :orange[authentic Indian cuisine], reimagined.**')
   # st.image('chola.png', width = 200)
 
 if __name__ == "__main__":
