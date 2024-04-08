@@ -28,7 +28,7 @@ def get_conn_df(conn):
       
 if __name__ == "__main__":
   conn = initiate()
-  df = get_conn_df()
+  df = get_conn_df(conn)
   st.subheader('Grand Chola - Menu')
   update_container = st.container()
   groups_df = display_current_menu(df, update_container, conn)
