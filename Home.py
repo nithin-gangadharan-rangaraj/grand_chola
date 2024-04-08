@@ -25,9 +25,7 @@ def display_menu(df):
     st.divider()
 
 def display_logo():
-  col1, col2 = st.columns([2, 1])
-  col1.header('Grand Chola Restaurrant')
-  col2.image('Chola logo only.png')
+  st.image('chola.png')
 
 if __name__ == "__main__":
   df = initiate()
