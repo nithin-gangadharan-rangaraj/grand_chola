@@ -28,9 +28,6 @@ def show_reservations(conn):
       st.subheader("Here are your reservations:", divider = 'orange')
       df = reshape_df(df)    
       st.dataframe(df,
-                  column_config={
-                                  "Number": st.column_config.TextColumn()
-                                },
                   use_container_width = True)   
     else:
       st.error('No reservations for the selected date')
