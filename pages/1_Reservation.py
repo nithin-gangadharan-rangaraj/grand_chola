@@ -8,7 +8,12 @@ def show_reservations(conn):
   if date in worksheet_names(conn):
     df = read_worksheet(conn, date).dropna(how = "all")
     if len(df) > 0:
-      st.write(df)   
+      st.dataframe(df,
+                  column_config={
+                                  "Number": st.column_config.NumberColumn(
+                                      format="%d",
+                                  )
+                                })   
     else:
       st.error('No reservations for the selected date')
   else:
