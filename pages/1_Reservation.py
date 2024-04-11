@@ -13,16 +13,16 @@ def show_reservations(conn):
       
       # Filter out rows where availability is not null
       result_df = melted_df.dropna(subset=['Availability'])
+      st.write(result_df)
+      # # Group by Name, Group size, and Number, and select the row with the minimum availability time
+      # result_df = result_df.groupby(['Name', 'Group size', 'Number']).apply(lambda x: x.loc[x['Time'].idxmin()]).reset_index(drop=True)
       
-      # Group by Name, Group size, and Number, and select the row with the minimum availability time
-      result_df = result_df.groupby(['Name', 'Group size', 'Number']).apply(lambda x: x.loc[x['Time'].idxmin()]).reset_index(drop=True)
-      
-      st.dataframe(result_df,
-                  column_config={
-                                  "Number": st.column_config.NumberColumn(
-                                      format="%d",
-                                  )
-                                })   
+      # st.dataframe(result_df,
+      #             column_config={
+      #                             "Number": st.column_config.NumberColumn(
+      #                                 format="%d",
+      #                             )
+      #                           })   
     else:
       st.error('No reservations for the selected date')
   else:
