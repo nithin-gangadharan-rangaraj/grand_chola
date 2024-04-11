@@ -13,18 +13,17 @@ def reshape_df(df):
   # Filter out rows where availability is not null
   result_df = melted_df.dropna(subset=['Availability'])
   
-  # Group by Name, Group size, and Number, and select the row with the minimum availability time
-  result_df = result_df.groupby(['Name', 'Group size', 'Number']).apply(lambda x: x.loc[x['Time'].idxmin()]).reset_index(drop=True)
-  result_df['Time'] = pd.to_datetime(result_df['Time']).dt.strftime('%H:%M')
+  # # Group by Name, Group size, and Number, and select the row with the minimum availability time
+  # result_df = result_df.groupby(['Name', 'Group size', 'Number']).apply(lambda x: x.loc[x['Time'].idxmin()]).reset_index(drop=True)
+  # result_df['Time'] = pd.to_datetime(result_df['Time']).dt.strftime('%H:%M')
 
-  result_df = result_df[[]]
+  # result_df = result_df[['Name','Group size', 'Number', 'Time']]
   return result_df
 
 def show_reservations(conn):
   date = st.date_input("📅 Reservation Date", value="default_value_today" , format="DD/MM/YYYY").strftime('%d/%m/%Y')
   if date in worksheet_names(conn):
     df = read_worksheet(conn, date).dropna(how = "all")
-    st.dataframe(df)
     if len(df) > 0:
       st.subheader("Here are your reservations:", divider = 'orange')
       df = reshape_df(df) 
