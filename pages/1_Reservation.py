@@ -21,7 +21,7 @@ def reshape_df(df):
 
   result_df['Time'] = pd.to_datetime(result_df['Time']).dt.strftime('%H:%M')
 
-  result_df = result_df[['Name','Group size', 'Number', 'Time']]
+  result_df = result_df[['Name','Group size', 'Number', 'Time']].reset_index(drop = True)
   return result_df
 
 def show_reservations(conn):
