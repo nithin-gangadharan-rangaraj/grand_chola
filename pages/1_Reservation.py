@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import pytz
 
 def show_reservations(conn):
-  date = st.date_input("📅 Reservation Date", value = today , format="DD/MM/YYYY").strftime('%H:%M')
+  date = st.date_input("📅 Reservation Date", value="default_value_today" , format="DD/MM/YYYY").strftime('%H:%M')
   if date in worksheet_names(conn):
     df = read_worksheet(conn, date)
     if len(df) > 0:
