@@ -5,12 +5,10 @@ import pytz
 
 def show_reservations(conn):
   date = st.date_input("📅 Reservation Date", value="default_value_today" , format="DD/MM/YYYY").strftime('%d/%m/%Y')
-  st.write(date)
   if date in worksheet_names(conn):
-    df = read_worksheet(conn, date)
-    st.write(df)
+    df = read_worksheet(conn, date).dropna(how = "all")
     if len(df) > 0:
-      st.datafame(df)   
+      st.dataframe(df)   
     else:
       st.error('No reservations for the selected date')
   else:
