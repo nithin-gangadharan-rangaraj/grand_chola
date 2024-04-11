@@ -8,7 +8,16 @@ def show_reservations(conn):
   if date in worksheet_names(conn):
     df = read_worksheet(conn, date).dropna(how = "all")
     if len(df) > 0:
-      st.dataframe(df,
+      # Reshape the dataframe
+      melted_df = pd.melt(df, id_vars=['Name', 'Group size', 'Number'], var_name='Time', value_name='Availability')
+      
+      # Filter out rows where availability is not null
+      result_df = melted_df.dropna(subset=['Availability'])
+      
+      # Group by Name, Group size, and Number, and select the row with the minimum availability time
+      result_df = result_df.groupby(['Name', 'Group size', 'Number']).apply(lambda x: x.loc[x['Time'].idxmin()]).reset_index(drop=True)
+      
+      st.dataframe(result_df,
                   column_config={
                                   "Number": st.column_config.NumberColumn(
                                       format="%d",
