@@ -29,9 +29,7 @@ def show_reservations(conn):
       df = reshape_df(df)    
       st.dataframe(df,
                   column_config={
-                                  "Number": st.column_config.NumberColumn(
-                                      format = str,
-                                  )
+                                  "Number": st.column_config.TextColumn()
                                 },
                   use_container_width = True)   
     else:
