@@ -28,7 +28,7 @@ def show_reservations(conn):
     if len(df) > 0:
       st.subheader("Here are your reservations:", divider = 'orange')
       df = reshape_df(df) 
-      st.write(df, use_container_width = True)   
+      st.table(df)   
     else:
       st.error('No reservations for the selected date')
   else:
