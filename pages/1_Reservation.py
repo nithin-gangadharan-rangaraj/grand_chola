@@ -16,9 +16,8 @@ def reshape_df(df):
   # Group by Name, Group size, and Number, and select the row with the minimum availability time
   result_df = result_df.groupby(['Name', 'Group size', 'Number']).apply(lambda x: x.loc[x['Time'].idxmin()]).reset_index(drop=True)
   result_df['Time'] = pd.to_datetime(result_df['Time']).dt.strftime('%H:%M')
-  result_df['Group size'] = result_df['Group size'].astype(float)
-  result_df['Number'] = result_df['Number'].astype(float)
-  result_df = result_df[['Name', 'Group size', 'Number', 'Time']]
+
+  result_df = result_df[['Name', 'Time']]
   return result_df
 
 def show_reservations(conn):
@@ -28,7 +27,7 @@ def show_reservations(conn):
     if len(df) > 0:
       st.subheader("Here are your reservations:", divider = 'orange')
       df = reshape_df(df) 
-      st.table(df)   
+      st.dataframe(df)   
     else:
       st.error('No reservations for the selected date')
   else:
