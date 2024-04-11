@@ -19,9 +19,9 @@ def reshape_df(df):
   # Extract the rows corresponding to the minimum time indices
   result_df = result_df.loc[min_time_indices]
 
-  # result_df['Time'] = pd.to_datetime(result_df['Time']).dt.strftime('%H:%M')
+  result_df['Time'] = pd.to_datetime(result_df['Time']).dt.strftime('%H:%M')
 
-  # result_df = result_df[['Name','Group size', 'Number', 'Time']]
+  result_df = result_df[['Name','Group size', 'Number', 'Time']]
   return result_df
 
 def show_reservations(conn):
