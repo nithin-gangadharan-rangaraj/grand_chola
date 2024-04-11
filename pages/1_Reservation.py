@@ -17,8 +17,6 @@ def reshape_df(df):
   result_df = result_df.groupby(['Name', 'Group size', 'Number']).apply(lambda x: x.loc[x['Time'].idxmin()]).reset_index(drop=True)
   result_df['Time'] = pd.to_datetime(result_df['Time']).dt.strftime('%H:%M')
 
-  result_df['Number'] = result_df['Number'].astype(str)
-
   result_df = result_df[['Name', 'Group size', 'Number', 'Time']]
   return result_df
 
