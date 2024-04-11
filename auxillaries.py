@@ -1,41 +1,34 @@
-
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 
 def initiate():
-  # Create a connection object.
   conn = st.connection('gsheets', type=GSheetsConnection)
-  
-  
   return conn
 
-# from google.oauth2 import service_account
-# import streamlit as st
-# import gspread
-# import pandas as pd
+def worksheet_names(conn):
+  try:
+    spreadsheet = conn.client._open_spreadsheet()  
+    worksheets = [wsheet.title for wsheet in spreadsheet.worksheets()]
+  except AttributeError:
+    worksheets = [wsheet.title for wsheet in conn.client.worksheets()]
+  return worksheets
 
-  
-# def initiate():
-#   if 'gsheet' in st.session_state:
-#       gsheet = st.session_state['gsheet']
-#   else:
-#       # Load service account credential
-#       service_acc = st.secrets["gcp_service_account"]
-      
-          
-#       credentials = service_account.Credentials.from_service_account_info(
-#       service_acc,
-#       scopes=[
-#           "https://www.googleapis.com/auth/spreadsheets",
-#           "https://www.googleapis.com/auth/drive"
-#       ],
-#       )
-  
-#       # Authorize gspread client
-#       gs = gspread.authorize(credentials)
-#       st.write(st.secrets['sheet_name'])
-#       gsheet = gs.open(st.secrets['sheet_name'])
-#       st.session_state['gsheet'] = gsheet
-#   return gsheet
+def create_worksheet(conn, name, df):
+  conn.create(
+            worksheet=name,
+            data=df,
+            )
 
+def update_worksheet(conn, wsheet, df):
+  conn.update(
+            worksheet=wsheet,
+            data=df,
+        )
+
+def read_worksheet(conn, wsheet):
+  df = conn.read(
+                worksheet = wsheet,
+                ttl = 0
+        )
+  return df
