@@ -30,7 +30,7 @@ def show_reservations(conn):
       st.dataframe(df,
                   column_config={
                                   "Number": st.column_config.NumberColumn(
-                                      format="%d",
+                                      format = str,
                                   )
                                 },
                   use_container_width = True)   
