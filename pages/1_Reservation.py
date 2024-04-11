@@ -11,18 +11,21 @@ def show_reservations(conn):
       # Reshape the dataframe
       melted_df = pd.melt(df, id_vars=['Name', 'Group size', 'Number'], var_name='Time', value_name='Availability')
       
+      # Convert 'Time' column to datetime format
+      melted_df['Time'] = pd.to_datetime(melted_df['Time'].str.replace(' hrs', ''), format='%H:%M')
+      
       # Filter out rows where availability is not null
       result_df = melted_df.dropna(subset=['Availability'])
-
-    # Group by Name, Group size, and Number, and select the row with the minimum availability time
+      
+      # Group by Name, Group size, and Number, and select the row with the minimum availability time
       result_df = result_df.groupby(['Name', 'Group size', 'Number']).apply(lambda x: x.loc[x['Time'].idxmin()]).reset_index(drop=True)
       
-      # st.dataframe(result_df,
-      #             column_config={
-      #                             "Number": st.column_config.NumberColumn(
-      #                                 format="%d",
-      #                             )
-      #                           })   
+      st.dataframe(result_df,
+                  column_config={
+                                  "Number": st.column_config.NumberColumn(
+                                      format="%d",
+                                  )
+                                })   
     else:
       st.error('No reservations for the selected date')
   else:
