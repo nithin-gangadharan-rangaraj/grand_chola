@@ -34,7 +34,8 @@ def show_reservations(conn):
       st.dataframe(df,
                   column_config = {
                     "Number": st.column_config.NumberColumn(format = "%d")
-                  })   
+                  },
+                  use_container_width = True)   
     else:
       st.error('No reservations for the selected date')
   else:
