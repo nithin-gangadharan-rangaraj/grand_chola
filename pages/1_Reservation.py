@@ -13,8 +13,11 @@ def reshape_df(df):
   # Filter out rows where availability is not null
   result_df = melted_df.dropna(subset=['Availability'])
   
-  # Group by Name, Group size, and Number, and select the row with the minimum availability time
-  result_df = result_df.groupby(['Name', 'Group size', 'Number']).apply(lambda x: x.loc[x['Time'].idxmin()]).reset_index(drop=True)
+  # Find the index of the minimum time within each group
+  min_time_indices = result_df.groupby(['Name', 'Group size', 'Number'])['Time'].idxmin()
+  
+  # Extract the rows corresponding to the minimum time indices
+  result_df = result_df.loc[min_time_indices]
 
   # result_df['Time'] = pd.to_datetime(result_df['Time']).dt.strftime('%H:%M')
 
